@@ -11,10 +11,10 @@ services:
             - ${CONFIG}/web/crontabs:/var/spool/cron/crontabs:Z
             - ${CONFIG}/transcripts:/usr/share/jitsi-meet/transcripts:Z
             - ${CONFIG}/web/load-test:/usr/share/jitsi-meet/load-test:Z
-            - /home/docker-jitsi-meet/custom-rebrand/images/:/usr/share/jitsi-meet/images/:Z
-            - /home/docker-jitsi-meet/custom-rebrand/title.html:/usr/share/jitsi-meet/title.html:Z
-            - /home/docker-jitsi-meet/custom-rebrand/config/config.js:/config/config.js:Z
-            - /home/docker-jitsi-meet/custom-rebrand/config/interface_config.js:/config/interface_config.js:Z
+            - /home/biblenow-rebrand/custom-rebrand/images/:/usr/share/jitsi-meet/images/:Z
+            - /home/biblenow-rebrand/custom-rebrand/title.html:/usr/share/jitsi-meet/title.html:Z
+            - /home/biblenow-rebrand/custom-rebrand/config/config.js:/config/config.js:Z
+            - /home/biblenow-rebrand/custom-rebrand/config/interface_config.js:/config/interface_config.js:Z
         labels:
             service: "jitsi-web"
         environment:
