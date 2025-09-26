@@ -2,7 +2,7 @@
 set -e
 
 # Path to the interface_config.js file
-IC_PATH="${IC_PATH:-/home/itech-h1/Desktop/haresh/biblenow//interface_config.js}"
+IC_PATH="${IC_PATH:-/config/interface_config.js}"
 
 
 # Input variables (you can export these before calling the script, or set defaults here)
