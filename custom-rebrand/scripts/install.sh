@@ -15,7 +15,7 @@ REBRAND_PNG_URL="https://i.ibb.co/j9yRvMf4/main_large.png"
 
 # === Download other images dynamically from OTHER_URLS ===
 OTHER_URLS=(
-   https://itech-apk-files.s3.us-east-2.amazonaws.com/apple-touch-icon.png-apkver-1-date-25-09-2025.png
+https://itech-apk-files.s3.us-east-2.amazonaws.com/apple-touch-icon.png-apkver-1-date-25-09-2025.png
 https://itech-apk-files.s3.us-east-2.amazonaws.com/app-store-badge.png-apkver-1-date-25-09-2025.png
 https://itech-apk-files.s3.us-east-2.amazonaws.com/avatar.png-apkver-1-date-25-09-2025.png
 https://itech-apk-files.s3.us-east-2.amazonaws.com/btn_google_signin_dark_normal.png-apkver-1-date-25-09-2025.png
