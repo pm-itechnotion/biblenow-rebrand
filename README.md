@@ -1,39 +1,104 @@
-# Jitsi Meet on Docker
+# BibleNow Rebrand Deployment
 
-![](resources/jitsi-docker.png)
+This guide will help you clone, configure, and run the BibleNow rebranded Jitsi deployment using Docker.
 
-[Jitsi](https://jitsi.org/) is a set of Open Source projects that allows you to easily build and deploy secure videoconferencing solutions.
+---
 
-[Jitsi Meet](https://jitsi.org/jitsi-meet/) is a fully encrypted, 100% Open Source video conferencing solution that you can use all day, every day, for free — with no account needed.
+## Prerequisites
 
-This repository contains the necessary tools to run a Jitsi Meet stack on [Docker](https://www.docker.com) using [Docker Compose](https://docs.docker.com/compose/).
+* Server with Docker and Docker Compose installed.
+* Access to the server terminal.
 
-All our images are published on [DockerHub](https://hub.docker.com/u/jitsi/).
+---
 
-## Supported architectures
+## Installation Steps
 
-Starting with `stable-7439` the published images are available for `amd64` and `arm64`.
+1. **Clone the repository**
 
-## Tags
+```bash
+git clone https://github.com/pm-itechnotion/biblenow-rebrand.git
+cd biblenow-rebrand
+```
 
-These are the currently published tags for all our images:
+2. **Set up your environment variables**
 
-Tag | Description
--- | --
-`stable` | Points to the latest stable release
-`stable-NNNN-X` | A stable release
-`unstable` | Points to the latest unstable release
-`unstable-YYYY-MM-DD` | Daily unstable release
-`latest` | Deprecated, no longer updated (will be removed)
+```bash
+cp env.example .env
+# Edit .env to set your custom configuration values
+nano .env
+```
 
-## Installation
+3. **Start Docker containers**
 
-The installation manual is available [here](https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-docker).
+```bash
+docker compose up -d --force-recreate
+```
 
-### Kubernetes
+4. **Verify containers are running**
 
-If you plan to install the jitsi-meet stack on a Kubernetes cluster you can find tools and tutorials in the project [Jitsi on Kubernetes](https://github.com/jitsi-contrib/jitsi-kubernetes).
+```bash
+docker ps
+```
 
-## TODO
+You should see output similar to:
 
-* Builtin TURN server.
+```
+CONTAINER ID   IMAGE                    COMMAND   CREATED       STATUS       PORTS                                               NAMES
+<id>          jitsi/web:unstable       "/init"    1 sec ago    Up 1 sec   0.0.0.0:80->80/tcp, 0.0.0.0:443->443/tcp         biblenow-rebrand-web-1
+<id>          jitsi/jicofo:unstable    "/init"    1 sec ago    Up 1 sec   127.0.0.1:8888->8888/tcp                          biblenow-rebrand-jicofo-1
+<id>          jitsi/jvb:unstable       "/init"    1 sec ago    Up 1 sec   127.0.0.1:8080->8080/tcp, 0.0.0.0:10000->10000/udp biblenow-rebrand-jvb-1
+<id>          jitsi/prosody:unstable   "/init"    1 sec ago    Up 1 sec   0.0.0.0:5222->5222/tcp, 0.0.0.0:5280->5280/tcp    biblenow-rebrand-prosody-1
+```
+
+---
+
+## Rebranding Jitsi Interface
+
+1. **Access the web container**
+
+```bash
+docker exec -it biblenow-rebrand-web-1 bash
+```
+
+2. **Install `nano` editor**
+
+```bash
+apt update && apt install nano -y
+```
+
+3. **Edit the interface configuration**
+
+```bash
+nano /config/interface_config.js
+```
+
+Update the following values for BibleNow branding:
+
+```javascript
+APP_NAME: 'BibleNow'
+BRAND_WATERMARK_LINK: 'https://www.biblenow.com'
+DISPLAY_WELCOME_FOOTER: false
+JITSI_WATERMARK_LINK: 'https://www.biblenow.com'
+MOBILE_APP_PROMO: false
+SHOW_BRAND_WATERMARK: true
+SHOW_JITSI_WATERMARK: false
+```
+
+Save and exit (`Ctrl + O`, `Enter`, `Ctrl + X`).
+
+---
+
+## Access the Application
+
+Open your browser and navigate to:
+
+[https://stream.biblenow.com](https://stream.biblenow.com)
+
+Your rebranded Jitsi instance should now be live.
+
+---
+
+## Notes
+
+* Ensure your domain points to the server running the Docker containers.
+* For any changes in branding, always edit `/config/interface_config.js` inside the `web` container.
