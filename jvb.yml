@@ -1,0 +1,23 @@
+version: "3"
+
+services:
+  jvb:
+    image: jitsi/jvb:stable
+    restart: unless-stopped
+    ports:
+      - "10000:10000/udp"    # media (RTP/UDP)
+      - "4443:4443/tcp"     # fallback TCP if configured
+    environment:
+      - XMPP_SERVER
+      - XMPP_DOMAIN
+      - XMPP_AUTH_DOMAIN
+      - XMPP_INTERNAL_MUC_DOMAIN
+      - JVB_AUTH_USER
+      - JVB_AUTH_PASSWORD
+      - JVB_BREWERY_MUC
+      - JVB_PORT
+      - JVB_TCP_HARVESTER_DISABLED
+      - JVB_TCP_PORT
+      - TZ
+    volumes:
+      - ./jvb-config:/config
