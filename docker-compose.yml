@@ -198,7 +198,7 @@ services:
         image: jitsi/prosody:${JITSI_IMAGE_VERSION:-unstable}
         restart: ${RESTART_POLICY:-unless-stopped}
         ports:
-            - "${XMPP_PORT:-5222}"
+            - "5222:5222"
             - "5269:5269"   # server-to-server
             - "5347:5347"   # external component
             - "5280:5280"   # HTTP admin
