@@ -76,9 +76,9 @@ Update the following values for BibleNow branding:
 
 ```javascript
 APP_NAME: 'BibleNow'
-BRAND_WATERMARK_LINK: 'https://www.biblenow.com'
+BRAND_WATERMARK_LINK: 'https://www.biblenow.io'
 DISPLAY_WELCOME_FOOTER: false
-JITSI_WATERMARK_LINK: 'https://www.biblenow.com'
+JITSI_WATERMARK_LINK: 'https://www.biblenow.io'
 MOBILE_APP_PROMO: false
 SHOW_BRAND_WATERMARK: true
 SHOW_JITSI_WATERMARK: false
@@ -87,6 +87,12 @@ SHOW_JITSI_WATERMARK: false
 Save and exit (`Ctrl + O`, `Enter`, `Ctrl + X`).
 
 ---
+4. **Execute the following command:**
+
+```bash
+sed -i 's|Jitsi Meet|BibleNow|g' /usr/share/jitsi-meet/libs/app.bundle.min.js
+```
+
 
 ## Access the Application
 
