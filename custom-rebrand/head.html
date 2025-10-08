@@ -1,0 +1,35 @@
+<script>
+    function addRedirectToMeetingButtons() {
+        // End meeting for all button
+        const endAllBtn = document.querySelector('button[aria-label="End meeting for all"]');
+        if (endAllBtn) {
+            endAllBtn.addEventListener('click', () => {
+                setTimeout(() => {
+                    window.location.href = "https://stream.biblenow.io/endstream";
+                }, 3000); // wait 3 seconds
+            });
+        }
+
+        // Leave meeting button
+        const leaveBtn = document.querySelector('button[aria-label="Leave meeting"]');
+        if (leaveBtn) {
+            leaveBtn.addEventListener('click', () => {
+                setTimeout(() => {
+                    window.location.href = "https://stream.biblenow.io/endstream";
+                }, 3000); // wait 3 seconds
+            });
+        }
+    }
+
+    // Retry until buttons are loaded (Jitsi renders them dynamically)
+    function waitForButtons() {
+        if (document.querySelector('button[aria-label="End meeting for all"]') &&
+            document.querySelector('button[aria-label="Leave meeting"]')) {
+            addRedirectToMeetingButtons();
+        } else {
+            setTimeout(waitForButtons, 500); // retry every 0.5s
+        }
+    }
+
+    waitForButtons();
+</script>

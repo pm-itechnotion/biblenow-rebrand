@@ -15,6 +15,7 @@ services:
             - /home/biblenow-rebrand/custom-rebrand/title.html:/usr/share/jitsi-meet/title.html:Z
             - /home/biblenow-rebrand/custom-rebrand/config/config.js:/config/config.js:Z
             - /home/biblenow-rebrand/custom-rebrand/config/interface_config.js:/config/interface_config.js:Z
+            - /home/biblenow-rebrand/custom-rebrand/head.html:/usr/share/jitsi-meet/head.html 
         labels:
             service: "jitsi-web"
         environment:
