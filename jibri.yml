@@ -7,6 +7,7 @@ services:
         volumes:
             - ${CONFIG}/jibri:/config:Z
             - /srv/jibri/finalize-supabase.sh:/config/finalize-supabase.sh:ro,Z
+        shm_size: '8gb'
         cap_add:
             - SYS_ADMIN
         environment:
