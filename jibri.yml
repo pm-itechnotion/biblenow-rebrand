@@ -5,7 +5,8 @@ services:
         image: jitsi/jibri:${JITSI_IMAGE_VERSION:-stable}
         restart: ${RESTART_POLICY:-unless-stopped}
         volumes:
-            - ${CONFIG}/jibri:/config:Z
+            - /srv/jibri/recordings:/config/recordings
+            - /srv/jibri/finalize-supabase.sh:/config/finalize-supabase.sh:ro
         shm_size: '8gb'
         cap_add:
             - SYS_ADMIN
